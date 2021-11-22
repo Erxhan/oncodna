@@ -1,0 +1,21 @@
+{
+  "firstname": "Voorname",
+  "lastname": "Naam",
+  "id": "ID patiënt",
+  "doctor": "Naam van de dokter",
+  "reports": "Rapporten",
+  "reportAvailable": "Beschikbare rapporten",
+  "totalReport": "Totaal verslagen",
+  "creationDate": "Laatste verslag",
+  "country": "Land",
+  "cancerType": "Type kanker",
+  "age": "Leeftijd",
+  "male": "Mannelijk",
+  "female": "Vrouwelijk",
+  "somethingWrong": "Er is iets verkeerd gebeurd...",
+  "success": "Succes!",
+  "patientSaved": "Patiënt {{name}} is gered",
+  "available": "Beschikbaar",
+  "unavailable": "Onbeschikbaar",
+  "required": "vereist"
+}

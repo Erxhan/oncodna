@@ -1,0 +1,21 @@
+{
+  "firstname": "Prénom",
+  "lastname": "Nom",
+  "id": "ID cas patient",
+  "doctor": "Nom du docteur",
+  "reports": "Rapports",
+  "reportAvailable": "Rapports disponibles",
+  "totalReport": "Rapports totaux",
+  "creationDate": "Dernier rapport",
+  "country": "Pays",
+  "cancerType": "Type de cancer",
+  "age": "Âge",
+  "male": "Homme",
+  "female": "Femme",
+  "somethingWrong": "Quelque chose d'imprévu s'est passé...",
+  "success": "Succès!",
+  "patientSaved": "Le patient {{name}} a bien été sauvegarder",
+  "available": "Disponible",
+  "unavailable": "Indisponible",
+  "required": "requis"
+}
