@@ -1,6 +1,7 @@
 import { useData } from "@/context/DataProvider";
 import {
   HStack,
+  Spinner,
   Table,
   Tbody,
   Td,
@@ -9,10 +10,9 @@ import {
   Thead,
   Tr,
   useDisclosure,
-  VStack,
 } from "@chakra-ui/react";
 import useTranslation from "next-translate/useTranslation";
-import { NewData, ReformatCase } from "pages/api/patient-case";
+import { ReformatCase } from "pages/api/patient-case";
 import { useMemo, useState } from "react";
 import {
   Column,
@@ -72,6 +72,10 @@ const CustomTable = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [lang]
   );
+
+  if (!data || !data) {
+    return <Spinner />;
+  }
 
   const {
     getTableProps,

@@ -13,6 +13,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import useTranslation from "next-translate/useTranslation";
+import { NewData } from "pages/api/patient-case";
 import { useForm } from "react-hook-form";
 import { PatientCase } from "types";
 import { Form } from "./Form/Form";
@@ -22,7 +23,7 @@ import InputSelect from "./Form/InputSelect";
 const CustomForm = ({ ...props }: ButtonProps) => {
   const { t } = useTranslation();
   const toast = useToast();
-  const { setLocalData } = useData();
+  const { setLocalData, addCase, getCases } = useData();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const form = useForm<Omit<PatientCase, "id">>({
     mode: "onSubmit",
@@ -32,17 +33,7 @@ const CustomForm = ({ ...props }: ButtonProps) => {
 
   const onSubmit = async (formValues: Omit<PatientCase, "id">) => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API}/add-case`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formValues),
-      });
-      const newData = await response.json();
-      console.log("newData ====>", newData);
-      debugger;
+      const newData = (await addCase?.(formValues)) as NewData;
       setLocalData?.(newData);
       toast({
         status: "success",

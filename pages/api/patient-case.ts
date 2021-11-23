@@ -1,17 +1,17 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { Doctor, PatientCase, Report } from 'types';
+import { Data, Doctor, PatientCase, Report } from 'types';
 import data from '../../db/db.json';
 
 export type ReformatCase = PatientCase & {doctor: Doctor} & {report: Report[]}
 
 export type NewData =  ReformatCase[]
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
-  let result: any[] = [];
-  data['patient-cases'].forEach((patient) => {
-    const foundDoctor = data['medical-doctors'].find(doctor => doctor.id === patient['medical-doctor-id'])
+export const reformatData = (localData: Data) => {
+  let result: NewData = [];
+  localData['patient-cases'].forEach((patient) => {
+    const foundDoctor = localData['medical-doctors'].find(doctor => doctor.id === patient['medical-doctor-id'])
     let foundReports: Report[] = []
-    data.reports.forEach(report => {
+    localData.reports.forEach(report => {
       if (report['patient-id'] === patient.id) {
         foundReports.push(report as Report)
       }
@@ -24,5 +24,10 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
     }
     result.push(newPatient)
   });
+  return result
+}
+
+export default (req: NextApiRequest, res: NextApiResponse) => {
+  const result = reformatData(data as Data)
   res.status(200).json(JSON.stringify(result))
 }

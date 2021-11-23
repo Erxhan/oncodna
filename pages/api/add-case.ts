@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import {readFile, writeFile} from 'fs/promises'
 import path from 'path'
 import getConfig from 'next/config'
-import { NewData } from "./patient-case";
+import { NewData, reformatData } from "./patient-case";
 const { serverRuntimeConfig } = getConfig()
 
 export default async (req: NextApiRequest, res: NextApiResponse<NewData | unknown>) => {
@@ -17,10 +17,11 @@ export default async (req: NextApiRequest, res: NextApiResponse<NewData | unknow
       }
       const newData = {
         ...data,
-        'patient-cases': [... data['patient-cases'], newCase]
+        'patient-cases': [...data['patient-cases'], newCase]
       }
       await writeFile(path.join(serverRuntimeConfig.PROJECT_ROOT, './db/db.json'), JSON.stringify(newData))
-      return res.status(200).json(newData);
+      const reformattedData = reformatData(newData)
+      return res.status(200).json(reformattedData);
     } catch(error) {
       return res.status(400).json({error});
     }

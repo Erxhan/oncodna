@@ -1,11 +1,11 @@
-import ToggleMode from "../components/ToggleMode";
-import { HStack, VStack, Text } from "@chakra-ui/react";
+import { DataProvider } from "@/context/DataProvider";
+import { HStack, Text, VStack } from "@chakra-ui/react";
 import { GetStaticProps } from "next";
+import CustomForm from "../components/CustomForm";
 import CustomTable from "../components/CustomTable";
 import SelectLanguage from "../components/SelectLanguage";
+import ToggleMode from "../components/ToggleMode";
 import { NewData } from "./api/patient-case";
-import CustomForm from "../components/CustomForm";
-import { DataProvider, useData } from "@/context/DataProvider";
 
 const Home = () => {
   return (
