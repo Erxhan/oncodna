@@ -17,5 +17,5 @@
 
 ### How to
 
-- ```npm install````
+- `npm install`
 - `npm run dev`
